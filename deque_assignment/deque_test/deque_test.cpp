@@ -10,7 +10,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace dequetest
 {
 	int verbose = 0;
-	int init_size = 32;
+	int init_size = 32; 
 	int n = 32;
 
 	TEST_CLASS(dequesimpletest) 
@@ -643,7 +643,7 @@ namespace dequetest
 			Assert::IsTrue(di == di2);
 		}
 
-		TEST_METHOD(begin_end_traverse_and_access_all)
+		/*TEST_METHOD(begin_end_traverse_and_access_all)
 		{
 			my_deque d = my_deque(init_size);
 			int j = 0;
@@ -666,7 +666,7 @@ namespace dequetest
 
 			Assert::IsTrue(start == d.end());
 			Assert::AreEqual(start.get_mem(), d.get_mem() + d.get_rIndex());
-		}
+		}*/
 	};
 }
 
