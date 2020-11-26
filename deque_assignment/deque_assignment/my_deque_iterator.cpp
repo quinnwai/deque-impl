@@ -5,7 +5,7 @@
 
 my_deque_iterator::my_deque_iterator(int* ptr, my_deque* d) : curr(ptr), deque(d) {
 	//if invalid ptr, set to nullptr
-	if (ptr < d->get_mem() + d->get_lIndex() || ptr > d->get_mem() + d->get_rIndex()) { //TODO: make sure not off by one for end
+	if (ptr < d->get_mem() + d->get_lIndex() || ptr > d->get_mem() + d->get_rIndex()) { 
 		curr = (int*)nullptr;
 	}
 }

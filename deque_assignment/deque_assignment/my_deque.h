@@ -24,6 +24,6 @@ public:
 	int pop_front();
 	int* get_mem();
 	int& operator[](const int i);
-	my_deque_iterator begin(); //TODO: uncomment this
+	my_deque_iterator begin(); 
 	my_deque_iterator end();
 };
