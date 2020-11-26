@@ -10,12 +10,8 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	my_deque* dqp1 = new my_deque(1);
+	/*my_deque* dqp1 = new my_deque(1);
 	cout << dqp1 << endl;
-	cout << dqp1 -> array << endl;
-	dqp1->push_back(3);
-	cout << dqp1 << endl;
-	cout << dqp1->array << endl;
-
+	cout << dqp1->get_mem() << endl;*/
 	return 0;
 }

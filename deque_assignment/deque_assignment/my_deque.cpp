@@ -1,17 +1,15 @@
 // define my_deque here
+
+#pragma once
 #include "my_deque.h"
-#include <iostream>
+#include "my_deque_iterator.h"
 
 my_deque::my_deque(int initial_size) : size(0), initSize(0), lIndex(0), rIndex(0) {
 	array = new int[initial_size];
 
-	//TODO: make sure this works
-	/*for (int i = 0; i < initial_size; ++i) {
-		array[i] = 0;
-	}*/
 	count = 0;
 
-	if (initial_size > 0) { //TODO; see if needed extra size == 1 condition
+	if (initial_size > 0) {
 		size = initial_size;
 		initSize = initial_size;
 		lIndex = (initial_size / 2) - 1;
@@ -290,3 +288,14 @@ int& my_deque::operator[](const int i) {
 	return array[index];
 }
 
+my_deque_iterator my_deque::begin() { //TODO: uncomment this
+	if (count == 0) {
+		return *(new my_deque_iterator(array + rIndex, this));
+	}
+	return *(new my_deque_iterator(array + lIndex + 1, this));
+
+}
+
+my_deque_iterator my_deque::end() {
+	return *(new my_deque_iterator(array + rIndex, this));
+}

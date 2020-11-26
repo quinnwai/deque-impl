@@ -1,22 +1,16 @@
-/*my_deque.h
-Author: Quinn Wai Wong
-Email: qwong@wustl.edu
-Purpose: declaring my_deque class
-*/
-
 #pragma once
 #include <memory>
+#include "my_deque_iterator.h"
 
 class my_deque {
 private:
-	
+	int* array;
 	int size;
 	int initSize;
 	int count;
 	int rIndex;
 	int lIndex;
 public:
-	int* array; //TODO: make sure this is right
 	my_deque(int initial_size);
 	my_deque(const my_deque& d);
 	~my_deque();
@@ -30,4 +24,6 @@ public:
 	int pop_front();
 	int* get_mem();
 	int& operator[](const int i);
+	my_deque_iterator begin(); //TODO: uncomment this
+	my_deque_iterator end();
 };
