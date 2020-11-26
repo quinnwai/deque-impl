@@ -21,5 +21,5 @@ dq1 ptr: 0000024017C039C0
 dq2 ptr: 0000005BC5AFFD28
 
 I know that a deep copy means the dequeue is stored in another location in memory. Since there are two different addresses for the
-two pointers, I know that the standard library implements the copy constructor to create a deep copy.
+two pointers, I know that the standard library implements the copy constructor to create a deep copy
 

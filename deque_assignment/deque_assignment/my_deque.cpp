@@ -3,6 +3,7 @@
 #pragma once
 #include "my_deque.h"
 #include "my_deque_iterator.h"
+#include <iostream>
 
 my_deque::my_deque(int initial_size) : size(0), initSize(0), lIndex(0), rIndex(0) {
 	array = new int[initial_size];
@@ -35,6 +36,7 @@ my_deque::my_deque(const my_deque& d) : size(0), initSize(0), count(0), lIndex(0
 
 my_deque::~my_deque() {
 	delete[] array;
+	std::cout << "destructor: " << this << std::endl;
 }
 
 int my_deque::get_used() {
@@ -62,6 +64,7 @@ void my_deque::push_back(int v) {
 	if (outOfBounds && tooManyElems) { //resize and recenter
 		//resize
 		my_deque* d2 = new my_deque(size * 2);
+		std::cout << "d2: " << d2 << std::endl;
 
 		int mid = ((lIndex + rIndex) / 2);
 
@@ -91,6 +94,7 @@ void my_deque::push_back(int v) {
 
 		//move d2 into array's old position for destruction
 		d2->array = oldArr;
+		delete d2;
 	}
 	//recenter only
 	else if (outOfBounds) {
@@ -106,7 +110,7 @@ void my_deque::push_back(int v) {
 
 		//fill right side of array including middle value
 		midArr = size / 2;
-		for (int i = mid + 1; i < rIndex; ++i) { 
+		for (int i = mid + 1; i < rIndex; ++i) {
 			array[midArr] = array[i];
 			++midArr;
 		}
@@ -146,12 +150,13 @@ void my_deque::push_front(int v) {
 		//copy all fields from array to array
 		array = d2->array;
 		size = d2->size;
-		lIndex = d2->lIndex; 
+		lIndex = d2->lIndex;
 		rIndex = d2->rIndex;
 		count = d2->count;
 
 		//move d2 into array's old position for destruction
 		d2->array = oldArr;
+		delete d2;
 	}
 	else if (outOfBounds) { //recenter only
 
@@ -161,7 +166,7 @@ void my_deque::push_front(int v) {
 		int midArr = size / 2;
 		for (int i = mid; i > lIndex; --i) {
 			array[midArr] = array[i];
-			array[i] = -1; 
+			array[i] = -1;
 			--midArr;
 		}
 		lIndex = midArr;
@@ -173,10 +178,10 @@ void my_deque::push_front(int v) {
 			++midArr;
 		}
 		if (count != 0) {
-			rIndex = midArr + 1; 
+			rIndex = midArr + 1;
 		}
 		else {
-			rIndex = midArr; 
+			rIndex = midArr;
 		}
 
 	}
@@ -204,7 +209,7 @@ int my_deque::pop_back() {
 			++(d2->count);
 		}
 		//fill right side of array including middle value
-		for (int i = mid + 1; i < rIndex; ++i) { 
+		for (int i = mid + 1; i < rIndex; ++i) {
 			d2->array[d2->rIndex] = array[i];
 			++(d2->rIndex);
 			++(d2->count);
@@ -222,6 +227,7 @@ int my_deque::pop_back() {
 
 		//move d2 into array's old position for destruction
 		d2->array = oldArr;
+		delete d2;
 	}
 
 	//update the proper fields and return popped value
@@ -231,7 +237,7 @@ int my_deque::pop_back() {
 }
 
 int my_deque::pop_front() {
-	if (count == 0) { 
+	if (count == 0) {
 		throw std::exception("");
 	}
 
@@ -241,14 +247,14 @@ int my_deque::pop_front() {
 
 		//fill left side of array left of the middle element
 		int mid = ((lIndex + rIndex) / 2);
-		for (int i = mid + 1; i > lIndex; --i) { 
+		for (int i = mid + 1; i > lIndex; --i) {
 			d2->array[d2->lIndex] = array[i];
 			--(d2->lIndex);
 			++(d2->count);
 		}
 
 		//fill right side of array including middle value
-		for (int i = mid + 2; i < rIndex; ++i) { 
+		for (int i = mid + 2; i < rIndex; ++i) {
 			d2->array[d2->rIndex] = array[i];
 			++(d2->rIndex);
 			++(d2->count);
@@ -266,6 +272,7 @@ int my_deque::pop_front() {
 
 		//move d2 into array's old position for destruction
 		d2->array = oldArr;
+		delete d2;
 	}
 
 	//update the proper fields and return popped value
